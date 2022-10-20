@@ -1,13 +1,136 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+  background-color: #c8d0d2;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 1rem 2rem;
+}
+
+.flashcard-list {
+  display: grid;
+  align-items: center;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}
+
+.flashcard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.3);
+  background-color: #fff;
+  min-height: 200px;
+  transform-style: preserve-3d;
+  transition: 150ms;
+  transform: perspective(1000px) rotateY(var(--rotate-y, 0));
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.flashcard:hover {
+  --translate-y: -2px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+
+.flip {
+  --rotate-y: 180deg;
+}
+
+.flashcard .front,
+.flashcard .back {
+  position: absolute;
+  padding: 1rem;
+  backface-visibility: hidden;
+}
+
+.flashcard .front {
+  left: 0;
+}
+
+.flashcard .back {
+  transform: rotateY(180deg);
+}
+
+.flashcard-options {
+  margin-top: 10px;
+}
+
+.flashcard-option {
+  margin-top: 5px;
+  font-size: 15px;
+  color: #555;
+}
+
+.flashcard-option:first-child {
+  margin-top: 0;
+}
+
+.header {
+  margin-bottom: 25px;
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+}
+
+.form-group select,
+.form-group input {
+  outline: none;
+  font-size: 16px;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form-group label {
+  padding-bottom: 5px;
+  font-size: 18px;
+  color: rgb(185, 172, 172);
+}
+
+.header button {
+  font-size: 16px;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #0d6efd;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 400px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .form-group {
+    width: 100%;
+    padding-bottom: 10px;
+  }
 }
